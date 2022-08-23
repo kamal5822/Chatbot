@@ -1,0 +1,39 @@
+version: "3.1"
+
+stories:
+
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: name
+    entities:
+    - name: venkat
+  - action: utter_ask_number
+  - intent: number
+    entities:
+    - number: '8897747677'
+  - slot_was_set:
+    - number: '8897747677'
+  - action: utter_acknlodwge
+  - action: utter_ask
+  - intent: deny
+  - action: utter_cheer_up
+
+## happy path
+* request_details 
+        - form_info 
+        - form{"name":"form_info"} 
+        - form{"name":null}
+> Check_feedback_details
+
+## affirm path
+> Check_feedback_details
+* affirm 
+        - action_submit 
+
+## deny path
+> Check_feedback_details
+* deny 
+        - utter_thanks

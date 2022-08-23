@@ -1,0 +1,63 @@
+version: '3.1'
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- affirm
+- bot_challenge
+- deny
+- goodbye
+- greet
+- name
+- number
+entities:
+- number
+- name
+slots:
+  name:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: name
+  number:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: number
+responses:
+  utter_greet:
+  - text: Hii there this is Chatur!! Please enter your first name to proceed further
+  utter_ask_number:
+  - text: Hey {name} please provide your mobile number to continue
+  utter_acknlodwge:
+  - text: Thanks for providing the required details
+  utter_ask:
+  - text: How can i help you?
+  utter_cheer_up:
+  - image: https://i.imgur.com/nGF1K8f.jpg
+    text: 'Here is something to cheer you up:'
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_happy:
+  - text: Great, carry on!
+  utter_goodbye:
+  - text: Bye
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_submit:
+  - text: "These are the values that you provided say yes or no to confirm:\n First\
+\ name: {Fname}\n Last Name: {Lname}\n Feedback: {fdbk}"
+actions:
+- utter_acknlodwge
+- utter_ask
+- utter_ask_number
+- utter_greet
+- utter_happy
+- action_last_name
+- action_feedback
+- action_submit
+- utter_thanks
+forms:
+- form_info
